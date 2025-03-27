@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card mb-4">
+            <div class="card-header bg-primary">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-shield-virus me-2"></i> Ransomware Simulation Tool
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="warning-banner mb-4">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    This tool is strictly for educational and cybersecurity awareness purposes.
+                </div>
+                
+                <h3 class="mb-3">What is this tool?</h3>
+                <p>
+                    This web application safely demonstrates how ransomware works in a controlled environment.
+                    It allows you to understand the encryption, ransom demand, and recovery processes without
+                    any actual risk to your system.
+                </p>
+                
+                <div class="educational-section">
+                    <h4><i class="fas fa-graduation-cap me-2"></i> Educational Purpose</h4>
+                    <p>
+                        Understanding how ransomware operates is crucial for cybersecurity professionals,
+                        IT administrators, and anyone responsible for protecting digital assets. This simulation
+                        provides hands-on experience with ransomware mechanics in a safe, isolated environment.
+                    </p>
+                </div>
+                
+                <h3 class="mb-3">Features of this simulator:</h3>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="fas fa-lock text-warning me-3"></i>
+                        <div>
+                            <strong>Safe File Encryption</strong>
+                            <p class="mb-0 text-muted">Demonstrates encryption of sample files using strong encryption algorithms</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="fas fa-file-invoice-dollar text-danger me-3"></i>
+                        <div>
+                            <strong>Simulated Ransom Note</strong>
+                            <p class="mb-0 text-muted">Shows how ransomware communicates with victims</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="fas fa-key text-success me-3"></i>
+                        <div>
+                            <strong>Controlled Recovery</strong>
+                            <p class="mb-0 text-muted">Demonstrates the decryption and recovery process</p>
+                        </div>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center">
+                        <i class="fas fa-book-open text-info me-3"></i>
+                        <div>
+                            <strong>Educational Content</strong>
+                            <p class="mb-0 text-muted">Provides information about ransomware prevention and best practices</p>
+                        </div>
+                    </li>
+                </ul>
+                
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('simulation') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-play-circle me-2"></i> Start Simulation
+                    </a>
+                    <a href="{{ url_for('about') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-info-circle me-2"></i> Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-danger">
+            <div class="card-header bg-danger text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-exclamation-triangle me-2"></i> Important Ethical Guidelines
+                </h3>
+            </div>
+            <div class="card-body">
+                <p class="fw-bold">This simulation tool should ONLY be used:</p>
+                <ul>
+                    <li>For educational purposes</li>
+                    <li>In controlled, isolated environments</li>
+                    <li>To understand how to protect against ransomware</li>
+                    <li>By cybersecurity professionals, students, or researchers</li>
+                </ul>
+                
+                <p class="fw-bold text-danger">It is illegal and unethical to:</p>
+                <ul>
+                    <li>Deploy this code against other systems without explicit permission</li>
+                    <li>Use this knowledge to develop actual malware</li>
+                    <li>Use the techniques demonstrated here to cause harm</li>
+                </ul>
+                
+                <div class="alert alert-warning">
+                    <i class="fas fa-gavel me-2"></i> 
+                    <strong>Legal Notice:</strong> Unauthorized use of ransomware or similar malicious software 
+                    is a crime in most jurisdictions and can result in severe penalties including fines and imprisonment.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+/* Custom CSS - minimal overrides for the Ransomware Simulation Tool */
+
+/* Ransom note styling */
+.ransom-note {
+    font-family: "Courier New", monospace;
+    background-color: var(--bs-dark);
+    border: 2px solid var(--bs-danger);
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(var(--bs-danger-rgb), 0.5);
+}
+
+.ransom-title {
+    color: var(--bs-danger);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.blink {
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Warning banners */
+.warning-banner {
+    background-color: var(--bs-warning);
+    color: var(--bs-dark);
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.ethical-banner {
+    background-color: var(--bs-danger);
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Educational sections */
+.educational-section {
+    background-color: rgba(var(--bs-info-rgb), 0.1);
+    border-left: 4px solid var(--bs-info);
+    padding: 15px;
+    margin: 20px 0;
+}
+
+/* Countdown timer */
+.countdown {
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--bs-danger);
+}
+
+/* File list */
+.encrypted-file {
+    color: var(--bs-danger);
+}
+
+/* Recovery key display */
+.recovery-key-container {
+    background-color: rgba(var(--bs-dark-rgb), 0.8);
+    border: 1px solid var(--bs-success);
+    padding: 10px;
+    margin: 15px 0;
+}
+
+#recovery-key {
+    font-family: 'Courier New', monospace;
+    background-color: transparent;
+    color: var(--bs-success);
+    border: none;
+    width: 100%;
+    padding: 5px;
+}

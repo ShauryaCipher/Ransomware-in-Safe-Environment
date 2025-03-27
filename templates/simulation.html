@@ -1,0 +1,149 @@
+{% extends "layout.html" %}
+
+{% block title %}Simulation{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card mb-4">
+            <div class="card-header bg-primary">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-virus me-2"></i> Start Ransomware Simulation
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="warning-banner mb-4" id="file-extension-warning">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Important:</strong> This simulation will temporarily encrypt your uploaded files to demonstrate how ransomware works.
+                    All files will be completely recoverable.
+                </div>
+                
+                <div class="educational-section mb-4">
+                    <h4><i class="fas fa-lightbulb me-2"></i> How This Simulation Works</h4>
+                    <p>
+                        <strong>Step 1:</strong> Upload some sample files (documents, images, etc.)<br>
+                        <strong>Step 2:</strong> The system will encrypt these files using secure encryption<br>
+                        <strong>Step 3:</strong> You'll see a simulated ransom note demanding payment<br>
+                        <strong>Step 4:</strong> You can then recover your files with the provided decryption key
+                    </p>
+                </div>
+                
+                <form action="{{ url_for('simulation') }}" method="POST" enctype="multipart/form-data" class="mb-4">
+                    <div class="mb-3">
+                        <label for="file-upload" class="form-label">Upload Files to Encrypt:</label>
+                        <input type="file" id="file-upload" name="files[]" class="form-control" multiple required>
+                        <small class="form-text text-muted">
+                            Supported file types: .txt, .pdf, .doc, .docx, .xls, .xlsx, .jpg, .jpeg, .png
+                        </small>
+                    </div>
+                    
+                    <div id="file-list">
+                        <!-- File list will be populated via JavaScript -->
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" required id="confirm-checkbox">
+                        <label class="form-check-label" for="confirm-checkbox">
+                            I understand this is an educational simulation and all uploaded files will be temporarily encrypted
+                        </label>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" id="simulate-btn" class="btn btn-danger btn-lg" disabled>
+                            <i class="fas fa-lock me-2"></i> Encrypt Files & Start Simulation
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="alert alert-info">
+                    <h5><i class="fas fa-info-circle me-2"></i> Safety Information</h5>
+                    <ul class="mb-0">
+                        <li>All files are stored temporarily and securely</li>
+                        <li>Files are automatically deleted after simulation</li>
+                        <li>The encryption key is stored in your browser session</li>
+                        <li>You will always be able to recover your files</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-shield-alt me-2"></i> Understanding Real Ransomware
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>Real ransomware typically uses these techniques:</p>
+                
+                <div class="accordion" id="ransomwareInfo">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                <i class="fas fa-search me-2"></i> Target Identification
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#ransomwareInfo">
+                            <div class="accordion-body">
+                                Ransomware scans for valuable files like documents, images, databases, and backup files.
+                                Modern ransomware also looks for network shares and connected storage.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                <i class="fas fa-lock me-2"></i> Encryption Methods
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#ransomwareInfo">
+                            <div class="accordion-body">
+                                Most ransomware uses strong encryption algorithms like AES-256 for file encryption
+                                and RSA-2048 or RSA-4096 for key encryption. The decryption key is kept on the
+                                attacker's server, making decryption impossible without payment.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                <i class="fas fa-money-bill-wave me-2"></i> Ransom Demands
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#ransomwareInfo">
+                            <div class="accordion-body">
+                                Attackers typically demand payment in cryptocurrency like Bitcoin. Amounts vary
+                                from hundreds to millions of dollars depending on the target. Payment instructions
+                                are displayed in ransom notes and often include deadlines after which files may be deleted
+                                or the price increased.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                <i class="fas fa-shield-alt me-2"></i> Protection Strategies
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#ransomwareInfo">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li>Maintain regular, offline backups</li>
+                                    <li>Keep all software and operating systems updated</li>
+                                    <li>Use reputable security software</li>
+                                    <li>Implement email filtering and user education</li>
+                                    <li>Use principle of least privilege for system access</li>
+                                    <li>Segment networks to limit spread</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

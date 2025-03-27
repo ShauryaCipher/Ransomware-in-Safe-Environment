@@ -1,0 +1,170 @@
+{% extends "layout.html" %}
+
+{% block title %}Ransom Note{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <!-- Simulated Ransom Note -->
+        <div class="card mb-4 ransom-note">
+            <div class="card-body text-center">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2RjMzU0NSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItbG9jayI+PHJlY3QgeD0iMyIgeT0iMTEiIHdpZHRoPSIxOCIgaGVpZ2h0PSIxMSIgcng9IjIiIHJ5PSIyIj48L3JlY3Q+PHBhdGggZD0iTTciIDExVjdhNSA1IDAgMCAxIDEwIDB2NCI+PC9wYXRoPjwvc3ZnPg==" alt="Locked" class="mb-3">
+                
+                <h1 class="ransom-title blink">YOUR FILES HAVE BEEN ENCRYPTED!</h1>
+                
+                <p class="fs-5 my-4">
+                    All your important files on this system have been encrypted with strong encryption algorithm.
+                    The only way to recover your files is to obtain the decryption key.
+                </p>
+                
+                <div class="text-start mb-4">
+                    <h3 class="text-warning">What happened?</h3>
+                    <p>
+                        Your files have been encrypted and are currently inaccessible. 
+                        In a real ransomware attack, you would need to pay to get your files back.
+                    </p>
+                    
+                    <h3 class="text-warning">Payment Instructions:</h3>
+                    <p>
+                        <span class="text-danger fw-bold">SIMULATION ONLY!</span> In a real attack, you would be instructed to:
+                    </p>
+                    <ol>
+                        <li>Pay a specific amount in cryptocurrency</li>
+                        <li>Submit proof of payment to receive a decryption key</li>
+                        <li>Use their decryption tool to recover your files</li>
+                    </ol>
+                    
+                    <h3 class="text-warning">Time Remaining:</h3>
+                    <div class="countdown" id="countdown-timer">24:00:00</div>
+                    <p class="text-muted">After time expires, the price will double or files may be deleted</p>
+                    
+                    <div id="timer-expired" class="alert alert-danger d-none">
+                        <i class="fas fa-exclamation-circle me-2"></i> Time expired! In a real attack, you might lose your files permanently.
+                    </div>
+                </div>
+                
+                <hr class="border-danger">
+                
+                <h3 class="text-warning mb-3">Affected Files:</h3>
+                <div class="table-responsive mb-4">
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Original Filename</th>
+                                <th>Encrypted Filename</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in range(original_filenames|length) %}
+                                <tr>
+                                    <td>{{ original_filenames[i] }}</td>
+                                    <td class="encrypted-file">{{ encrypted_files[i] }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Educational Simulation Section -->
+        <div class="card mb-4">
+            <div class="card-header bg-success">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-shield-alt me-2"></i> Simulation Controls
+                </h2>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <strong>Educational Simulation:</strong> This is a controlled demonstration.
+                    In a real ransomware attack, you might not have these recovery options.
+                </div>
+                
+                <h3 class="mb-3">Your Recovery Options:</h3>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-primary">Option 1: Use the Decryption Key</div>
+                    <div class="card-body">
+                        <p>
+                            Your decryption key has been safely stored in your session.
+                            In a real attack, you would need to pay to receive this key.
+                        </p>
+                        
+                        <div class="recovery-key-container mb-3">
+                            <label class="form-label text-muted">Your Decryption Key:</label>
+                            <input type="text" id="recovery-key" value="{{ session.get('encryption_key', '') }}" readonly>
+                            <button id="copy-key-btn" class="btn btn-sm btn-outline-success" onclick="copyRecoveryKey()">
+                                <i class="fas fa-copy me-1"></i> Copy Key
+                            </button>
+                        </div>
+                        
+                        <form action="{{ url_for('decrypt') }}" method="POST">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-key me-2"></i> Decrypt Files
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="card mb-4">
+                    <div class="card-header bg-warning text-dark">Option 2: Restoration from Backup</div>
+                    <div class="card-body">
+                        <p>
+                            In real-world scenarios, having proper backups is the best defense against ransomware.
+                            Organizations with proper backup strategies can often recover without paying.
+                        </p>
+                        <div class="d-grid">
+                            <button class="btn btn-outline-warning" disabled>
+                                <i class="fas fa-database me-2"></i> Restore from Backup
+                                <span class="badge bg-secondary ms-2">Simulation Only</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-grid">
+                    <a href="{{ url_for('clear_simulation') }}" class="btn btn-danger">
+                        <i class="fas fa-trash me-2"></i> Reset Simulation
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Educational Content -->
+        <div class="card">
+            <div class="card-header bg-info">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-graduation-cap me-2"></i> Learning Points
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="mb-4">
+                    <h4><i class="fas fa-exclamation-triangle text-warning me-2"></i> In a Real Ransomware Attack:</h4>
+                    <ul>
+                        <li>All your files would be encrypted with a key only the attacker has</li>
+                        <li>You would have limited recovery options</li>
+                        <li>Paying the ransom doesn't guarantee recovery</li>
+                        <li>The attack might spread to other connected systems</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-4">
+                    <h4><i class="fas fa-shield-alt text-success me-2"></i> Prevention Methods:</h4>
+                    <ol>
+                        <li><strong>Regular Backups:</strong> Maintain offline backups of important data</li>
+                        <li><strong>Software Updates:</strong> Keep systems and software up-to-date</li>
+                        <li><strong>Email Security:</strong> Be cautious with email attachments and links</li>
+                        <li><strong>Access Control:</strong> Implement principle of least privilege</li>
+                        <li><strong>Security Software:</strong> Use reputable antivirus and anti-malware tools</li>
+                        <li><strong>Network Segmentation:</strong> Limit the potential spread of ransomware</li>
+                        <li><strong>Security Awareness:</strong> Train users to recognize threats</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

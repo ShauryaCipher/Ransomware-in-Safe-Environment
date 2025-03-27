@@ -1,0 +1,214 @@
+{% extends "layout.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card mb-4">
+            <div class="card-header bg-primary">
+                <h2 class="card-title mb-0">
+                    <i class="fas fa-info-circle me-2"></i> About This Tool
+                </h2>
+            </div>
+            <div class="card-body">
+                <h3 class="mb-3">Educational Purpose</h3>
+                <p>
+                    This Ransomware Simulation Tool was created purely for educational and cybersecurity awareness purposes.
+                    It demonstrates the basic mechanisms of ransomware attacks in a controlled, safe environment to help
+                    security professionals, IT personnel, and students understand how these attacks work.
+                </p>
+                
+                <div class="alert alert-warning mb-4">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Important:</strong> This tool should never be used outside of educational contexts or controlled environments.
+                    Using ransomware techniques against real systems without authorization is illegal and unethical.
+                </div>
+                
+                <h3 class="mb-3">How This Simulator Works</h3>
+                <p>
+                    This simulator uses legitimate encryption technologies, but implements them in a controlled way that:
+                </p>
+                <ul>
+                    <li>Only operates on files you specifically upload</li>
+                    <li>Securely stores the decryption key in your session</li>
+                    <li>Provides guaranteed recovery methods</li>
+                    <li>Includes detailed educational content</li>
+                    <li>Cannot spread to other systems</li>
+                </ul>
+                
+                <h3 class="mb-3">Technical Details</h3>
+                <div class="accordion" id="technicalInfo">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEncryption">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEncryption">
+                                <i class="fas fa-lock me-2"></i> Encryption Method
+                            </button>
+                        </h2>
+                        <div id="collapseEncryption" class="accordion-collapse collapse" data-bs-parent="#technicalInfo">
+                            <div class="accordion-body">
+                                <p>
+                                    This simulation uses the Fernet symmetric encryption algorithm from the Python cryptography library.
+                                    Fernet guarantees that a message encrypted using it cannot be manipulated or read without the key.
+                                </p>
+                                <p>
+                                    Fernet is an implementation of symmetric (also known as "secret key") authenticated cryptography.
+                                    It uses 128-bit AES in CBC mode and PKCS7 padding, with HMAC using SHA256 for authentication.
+                                </p>
+                                <p>
+                                    Real ransomware often uses a combination of symmetric and asymmetric encryption:
+                                </p>
+                                <ul>
+                                    <li>Symmetric encryption (like AES-256) for the files themselves</li>
+                                    <li>Asymmetric encryption (like RSA-2048) for the symmetric key</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFiles">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFiles">
+                                <i class="fas fa-file me-2"></i> File Handling
+                            </button>
+                        </h2>
+                        <div id="collapseFiles" class="accordion-collapse collapse" data-bs-parent="#technicalInfo">
+                            <div class="accordion-body">
+                                <p>
+                                    This simulation only affects files you explicitly upload. It stores them in a temporary directory
+                                    that is isolated from your system.
+                                </p>
+                                <p>
+                                    In contrast, real ransomware typically:
+                                </p>
+                                <ul>
+                                    <li>Searches for valuable files throughout the system</li>
+                                    <li>Targets specific file extensions (documents, images, databases)</li>
+                                    <li>May attack network shares and connected drives</li>
+                                    <li>Often deletes shadow copies and backups</li>
+                                    <li>Can spread laterally through a network</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSafeguards">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSafeguards">
+                                <i class="fas fa-shield-alt me-2"></i> Safety Measures
+                            </button>
+                        </h2>
+                        <div id="collapseSafeguards" class="accordion-collapse collapse" data-bs-parent="#technicalInfo">
+                            <div class="accordion-body">
+                                <p>This simulation includes several safety measures:</p>
+                                <ul>
+                                    <li>Clear warnings and consent requirements</li>
+                                    <li>Isolation in a temporary directory</li>
+                                    <li>Automatic cleanup after simulation</li>
+                                    <li>Guaranteed recovery through stored keys</li>
+                                    <li>No persistence or spreading mechanisms</li>
+                                    <li>Detailed logging of all operations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-info">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-book me-2"></i> Educational Resources
+                </h3>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-3">Understanding Ransomware</h4>
+                <p>
+                    If you're interested in learning more about ransomware, cybersecurity, and how to protect systems,
+                    here are some valuable resources:
+                </p>
+                
+                <div class="list-group mb-4">
+                    <a href="https://www.cisa.gov/stopransomware" class="list-group-item list-group-item-action" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i> CISA: StopRansomware.gov
+                    </a>
+                    <a href="https://www.fbi.gov/investigate/cyber" class="list-group-item list-group-item-action" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i> FBI Cyber Division Resources
+                    </a>
+                    <a href="https://www.sans.org/security-resources/" class="list-group-item list-group-item-action" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i> SANS Institute Security Resources
+                    </a>
+                    <a href="https://www.nomoreransom.org/" class="list-group-item list-group-item-action" target="_blank">
+                        <i class="fas fa-external-link-alt me-2"></i> No More Ransom Project
+                    </a>
+                </div>
+                
+                <h4 class="mb-3">Best Practices for Prevention</h4>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-success text-white">For Individuals</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Keep software and systems updated</li>
+                                <li class="list-group-item">Use reputable security software</li>
+                                <li class="list-group-item">Create regular backups of important data</li>
+                                <li class="list-group-item">Be cautious with email attachments and links</li>
+                                <li class="list-group-item">Use strong, unique passwords and 2FA</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mb-3">
+                            <div class="card-header bg-success text-white">For Organizations</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Implement comprehensive backup strategy</li>
+                                <li class="list-group-item">Train employees on security awareness</li>
+                                <li class="list-group-item">Segment networks to limit spread</li>
+                                <li class="list-group-item">Implement principle of least privilege</li>
+                                <li class="list-group-item">Develop incident response plan</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-gavel me-2"></i> Legal and Ethical Statement
+                </h3>
+            </div>
+            <div class="card-body">
+                <p>
+                    This tool is provided for educational purposes only. The creators and distributors of this
+                    educational simulation tool expressly disclaim any responsibility for misuse of this information.
+                </p>
+                
+                <h4 class="mb-3">Legal Considerations:</h4>
+                <ul>
+                    <li>Creating or using actual ransomware is illegal in most jurisdictions</li>
+                    <li>Unauthorized access to computer systems is a criminal offense</li>
+                    <li>Computer fraud and extortion carry severe penalties</li>
+                </ul>
+                
+                <h4 class="mb-3">Ethical Guidelines:</h4>
+                <ul>
+                    <li>Use this tool only in controlled environments you own or have explicit permission to test</li>
+                    <li>Focus on defensive techniques and prevention</li>
+                    <li>Share knowledge responsibly and ethically</li>
+                    <li>Always prioritize security and protection over exploitation</li>
+                </ul>
+                
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <strong>Reminder:</strong> This tool is designed solely to demonstrate the mechanics of ransomware
+                    in a safe, educational context. Any use of these techniques against real systems without authorization
+                    is illegal and unethical.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
